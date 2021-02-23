@@ -14,15 +14,6 @@
   },
   "build": {
     "appId": "trex-runner",
-    "extraFiles": [
-      "icons/",
-      "js/",
-      "libs/",
-      "misc/",
-      "obstacles/",
-      "sounds/",
-      "trex/"
-    ],
     "win": {
       "target": [
         "nsis"
@@ -35,7 +26,11 @@
       "uninstallDisplayName": "TRex Runner",
       "oneClick": false,
       "perMachine": true,
-      "allowToChangeInstallationDirectory": true
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "menuCategory": true,
+      "shortcutName": "TRex Runner"
     }
   },
   "keywords": [],
