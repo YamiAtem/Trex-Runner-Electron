@@ -39,14 +39,7 @@ var jump, checkpoint, die;
 
 function preload() {
     // trex images
-    trex1 = loadImage("trex/trex1.png");
-    trex2 = loadImage("trex/trex2.png");
-    trex3 = loadImage("trex/trex3.png");
-    trex_c = loadImage("trex/trex_c.png");
-
-    // trex anim
-    trex_anim = loadAnimation(trex1, trex2, trex3);
-    trex_collide = loadAnimation(trex_c);
+    load_trex_images();
 
     // ground
     ground_image = loadImage("misc/ground2.png");
@@ -55,12 +48,7 @@ function preload() {
     cloud_image = loadImage("misc/cloud.png");
 
     // obstalces
-    obstacle1 = loadImage("obstacles/obstacle1.png");
-    obstacle2 = loadImage("obstacles/obstacle2.png");
-    obstacle3 = loadImage("obstacles/obstacle3.png");
-    obstacle4 = loadImage("obstacles/obstacle4.png");
-    obstacle5 = loadImage("obstacles/obstacle5.png");
-    obstacle6 = loadImage("obstacles/obstacle1.png");
+    load_obstacle_images();
 
     // game over images
     game_over_image = loadImage("misc/gameOver.png");
@@ -69,6 +57,7 @@ function preload() {
     // sounds
     jump = loadSound("sounds/jump.mp3");
     die = loadSound("sounds/die.mp3");
+    checkpoint = loadSound("sounds/checkPoint.mp3");
 }
 
 function setup() {
