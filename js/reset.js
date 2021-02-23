@@ -10,8 +10,8 @@ function reset() {
     by.show();
     start_button.show();
 
-    obstaclesGroup.destroyEach();
-    cloudsGroup.destroyEach();
+    obstacles_group.destroyEach();
+    cloud_group.destroyEach();
 
     trex.changeAnimation("running", trex_running);
 
