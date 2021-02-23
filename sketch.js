@@ -19,6 +19,9 @@ var start_button, title, by;
 var trex_sprite, trex_anim, trex_collide;
 var trex1, trex2, trex3, trex_c;
 
+// ground
+var ground, ground_image, invis_ground;
+
 function preload() {
     // trex images
     trex1 = loadImage("trex/trex1.png");
@@ -29,6 +32,9 @@ function preload() {
     // trex anim
     trex_anim = loadAnimation(trex1, trex2, trex3);
     trex_collide = loadAnimation(trex_c);
+
+    // ground
+    ground_image = loadImage("misc/ground2.png");
 }
 
 function setup() {
@@ -60,12 +66,21 @@ function setup() {
 
     // play screen
     // trex
-    trex_sprite = createSprite(50, 180, 20, 50);
+    trex_sprite = createSprite(30, H / 2, 20, 50);
     trex_sprite.addAnimation("run", trex_anim);
     trex_sprite.addAnimation("collided", trex_collide);
     trex_sprite.scale = 0.5;
 
     trex_sprite.visible = false;
+
+    // ground
+    ground = createSprite(200, H / 2 + 15, 400, 20);
+    ground.addImage("ground", ground_image);
+    ground.x = ground.width / 2;
+    ground.velocityX = -(6 + 3 * score / 100);
+
+    invis_ground = createSprite(200, H / 2 + 17.5, 400, 10);
+    invis_ground.visible = false;
 }
 
 function draw() {
@@ -73,14 +88,35 @@ function draw() {
 
     textSize(20);
 
-    if (game_state === PLAY) {
+    if (game_state === START) {
+        // ground velocity
+        ground.velocityX = -(6 + 3);
+
+        // infinite ground
+        if (ground.x < 0) {
+            ground.x = ground.width / 2;
+        }
+    } else if (game_state === PLAY) {
         trex_sprite.visible = true;
+        trex_sprite.velocityY = trex_sprite.velocityY + 0.8
+        trex_sprite.collide(invis_ground);
 
         // display score
         text("Score: " + score, 500, 50);
 
         // display highscore
         text("Highscore: " + localStorage["HighestScore"], 100, 50);
+
+        // adding score
+        score = score + Math.round(getFrameRate() / 60);
+
+        // ground velocity
+        ground.velocityX = -(6 + 3 * score / 100);
+
+        // infinite ground
+        if (ground.x < 0) {
+            ground.x = ground.width / 2;
+        }
     } else if (game_state === END) {
 
     }
