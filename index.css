@@ -5,3 +5,9 @@ html, body {
 canvas {
   display: block;
 }
+#start_button {
+  font-size: larger;
+}
+#title {
+  font-size: 60px;
+}
