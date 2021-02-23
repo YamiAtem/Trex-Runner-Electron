@@ -28,6 +28,9 @@ var ground, ground_image, invis_ground;
 // clouds 
 var cloud_image, cloud_group;
 
+// obstacles
+var obstacle1, obstacle2, obstacle3, obstacle4, obstacle5, obstacle6, obstacles_group;
+
 // sounds
 var jump, checkpoint, die;
 
@@ -47,6 +50,14 @@ function preload() {
 
     // clouds
     cloud_image = loadImage("misc/cloud.png");
+
+    // obstalces
+    obstacle1 = loadImage("obstacles/obstacle1.png");
+    obstacle2 = loadImage("obstacles/obstacle2.png");
+    obstacle3 = loadImage("obstacles/obstacle3.png");
+    obstacle4 = loadImage("obstacles/obstacle4.png");
+    obstacle5 = loadImage("obstacles/obstacle5.png");
+    obstacle6 = loadImage("obstacles/obstacle1.png");
 
     // sounds
     jump = loadSound("sounds/jump.mp3");
@@ -99,6 +110,7 @@ function setup() {
 
     // groups
     cloud_group = new Group();
+    obstacles_group = new Group();
 
     score = 0;
 }
@@ -146,6 +158,9 @@ function draw() {
 
         // spawn clouds
         spawn_clouds();
+
+        // spawn obstacles
+        spawn_obstacles();
     } else if (game_state === END) {
 
     }
