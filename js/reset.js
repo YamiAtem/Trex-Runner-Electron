@@ -1,6 +1,6 @@
 function reset() {
     game_state = START;
-    gameOver.visible = false;
+    game_over.visible = false;
     restart.visible = false;
 
     obstaclesGroup.destroyEach();
