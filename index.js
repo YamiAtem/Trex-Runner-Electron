@@ -9,7 +9,8 @@ const createWindow = () => {
   const mainWindow = new BrowserWindow({
     width: 856,
     height: 482,
-    icon: "icons/icon.png"
+    icon: "icons/icon.png",
+    resizable: false
   });
 
   mainWindow.loadFile(path.join(__dirname, 'index.html'));
