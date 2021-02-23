@@ -66,7 +66,9 @@ function setup() {
 
 function draw() {
     background(255);
+
     textSize(20);
+    // display score
     text("Score: " + score, 500, 50);
 
     // display highscore
