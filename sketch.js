@@ -25,6 +25,9 @@ var trex1, trex2, trex3, trex_c;
 // ground
 var ground, ground_image, invis_ground;
 
+// clouds 
+var cloud_image, cloud_group;
+
 // sounds
 var jump, checkpoint, die;
 
@@ -41,6 +44,9 @@ function preload() {
 
     // ground
     ground_image = loadImage("misc/ground2.png");
+
+    // clouds
+    cloud_image = loadImage("misc/cloud.png");
 
     // sounds
     jump = loadSound("sounds/jump.mp3");
@@ -90,6 +96,11 @@ function setup() {
 
     invis_ground = createSprite(200, H / 2 + 17.5, 400, 10);
     invis_ground.visible = false;
+
+    // groups
+    cloud_group = new Group();
+
+    score = 0;
 }
 
 function draw() {
@@ -132,6 +143,9 @@ function draw() {
             trex_sprite.velocityY = -12;
             jump.play();
         }
+
+        // spawn clouds
+        spawn_clouds();
     } else if (game_state === END) {
 
     }
