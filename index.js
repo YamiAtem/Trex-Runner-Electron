@@ -15,8 +15,6 @@ const createWindow = () => {
 
   mainWindow.loadFile(path.join(__dirname, 'index.html'));
   mainWindow.setMenu(null);
-
-  mainWindow.webContents.openDevTools();
 };
 app.on('ready', createWindow);
 app.on('window-all-closed', () => {
