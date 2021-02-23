@@ -1,6 +1,6 @@
 {
   "name": "trex-runner",
-  "productName": "trex-runner",
+  "productName": "TRrex Runner",
   "version": "1.0.0",
   "description": "My Electron application description",
   "main": "index.js",
@@ -9,7 +9,34 @@
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
-    "lint": "echo \"No linting configured\""
+    "lint": "echo \"No linting configured\"",
+    "build": "electron-builder"
+  },
+  "build": {
+    "appId": "trex-runner",
+    "extraFiles": [
+      "icons/",
+      "js/",
+      "libs/",
+      "misc/",
+      "obstacles/",
+      "sounds/",
+      "trex/"
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "icons/icon.ico"
+    },
+    "nsis": {
+      "installerIcon": "icons/icon.ico",
+      "uninstallerIcon": "icons/icon.ico",
+      "uninstallDisplayName": "TRex Runner",
+      "oneClick": false,
+      "perMachine": true,
+      "allowToChangeInstallationDirectory": true
+    }
   },
   "keywords": [],
   "author": {
