@@ -128,8 +128,8 @@ function draw() {
         }
 
         // trex jump
-        if(keyDown("space") && trex.y > 161) {
-            trex.velocityY = -12;
+        if(keyDown("space") && trex_sprite.y > 210.75) {
+            trex_sprite.velocityY = -12;
             jump.play();
         }
     } else if (game_state === END) {
