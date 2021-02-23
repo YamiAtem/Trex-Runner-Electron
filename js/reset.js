@@ -1,6 +1,3 @@
-/// <reference path="../libs/p5.d.ts"/>
-/// <reference path="../libs/p5.global-mode.d.ts"/>
-
 function reset() {
     game_state = START;
     game_over.visible = false;
@@ -13,7 +10,7 @@ function reset() {
     obstacles_group.destroyEach();
     cloud_group.destroyEach();
 
-    trex.changeAnimation("running", trex_running);
+    trex_sprite.changeAnimation("running", trex_running);
 
     if (localStorage["HighestScore"] < score) {
         localStorage["HighestScore"] = score;
