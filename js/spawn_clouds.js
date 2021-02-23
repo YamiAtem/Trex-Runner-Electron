@@ -1,3 +1,6 @@
+/// <reference path="../libs/p5.d.ts"/>
+/// <reference path="../libs/p5.global-mode.d.ts"/>
+
 function spawn_clouds() {
     if (frameCount % 60 === 0) {
         var cloud = createSprite(856, 120, 40, 10);
