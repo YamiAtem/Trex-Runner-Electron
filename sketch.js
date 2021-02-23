@@ -1,3 +1,6 @@
+/// <reference path="libs/p5.d.ts"/>
+/// <reference path="libs/p5.global-mode.d.ts"/>
+
 const W = window.innerWidth;
 const H = window.innerHeight;
 
@@ -22,6 +25,9 @@ var trex1, trex2, trex3, trex_c;
 // ground
 var ground, ground_image, invis_ground;
 
+// sounds
+var jump, checkpoint, die;
+
 function preload() {
     // trex images
     trex1 = loadImage("trex/trex1.png");
@@ -35,6 +41,9 @@ function preload() {
 
     // ground
     ground_image = loadImage("misc/ground2.png");
+
+    // sounds
+    jump = loadSound("sounds/jump.mp3");
 }
 
 function setup() {
@@ -116,6 +125,12 @@ function draw() {
         // infinite ground
         if (ground.x < 0) {
             ground.x = ground.width / 2;
+        }
+
+        // trex jump
+        if(keyDown("space") && trex.y > 161) {
+            trex.velocityY = -12;
+            jump.play();
         }
     } else if (game_state === END) {
 
