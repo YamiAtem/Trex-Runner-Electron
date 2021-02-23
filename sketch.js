@@ -31,6 +31,9 @@ var cloud_image, cloud_group;
 // obstacles
 var obstacle1, obstacle2, obstacle3, obstacle4, obstacle5, obstacle6, obstacles_group;
 
+// game over
+var game_over, restart, restart_image, game_over_image;
+
 // sounds
 var jump, checkpoint, die;
 
@@ -59,54 +62,31 @@ function preload() {
     obstacle5 = loadImage("obstacles/obstacle5.png");
     obstacle6 = loadImage("obstacles/obstacle1.png");
 
+    // game over images
+    game_over_image = loadImage("misc/gameOver.png");
+    restart_image = loadImage("misc/restart.png");
+
     // sounds
     jump = loadSound("sounds/jump.mp3");
+    die = loadSound("sounds/die.mp3");
 }
 
 function setup() {
     createCanvas(W, H);
 
     // start screen
-    title = createElement('h1');
-    title.html("TRex Runner");
-    title.position(W / 2 - 165, H / 2 - 250);
-    title.id("title");
-
-    by = createElement('h3');
-    by.html("By: Atharva Mishra");
-    by.position(W / 2 - 75, H / 2 - 150);
-    by.id("by");
-
-    start_button = createButton("Play!");
-    start_button.size(100, 50);
-    start_button.position((W / 2) - 50, (H / 2) - 25);
-    start_button.id("start_button");
-
-    start_button.mousePressed(() => {
-        start_button.hide();
-        title.hide();
-        by.hide();
-
-        game_state = PLAY;
-    });
+    load_start_screen();
 
     // play screen
     // trex
-    trex_sprite = createSprite(30, H / 2, 20, 50);
-    trex_sprite.addAnimation("run", trex_anim);
-    trex_sprite.addAnimation("collided", trex_collide);
-    trex_sprite.scale = 0.5;
-
-    trex_sprite.visible = false;
+    load_trex();
 
     // ground
-    ground = createSprite(200, H / 2 + 15, 400, 20);
-    ground.addImage("ground", ground_image);
-    ground.x = ground.width / 2;
-    ground.velocityX = -(6 + 3 * score / 100);
+    load_ground();
 
-    invis_ground = createSprite(200, H / 2 + 17.5, 400, 10);
-    invis_ground.visible = false;
+    // game over
+    load_game_over();
+
 
     // groups
     cloud_group = new Group();
@@ -151,9 +131,15 @@ function draw() {
         }
 
         // trex jump
-        if(keyDown("space") && trex_sprite.y > 210.75) {
+        if (keyDown("space") && trex_sprite.y > 210.75) {
             trex_sprite.velocityY = -12;
             jump.play();
+        }
+
+        // game over
+        if (obstacles_group.isTouching(trex_sprite)) {
+            game_state = END;
+            die.play();
         }
 
         // spawn clouds
@@ -162,7 +148,25 @@ function draw() {
         // spawn obstacles
         spawn_obstacles();
     } else if (game_state === END) {
+        game_over.visible = true;
+        restart.visible = true;
 
+        //set velcity of each game object to 0
+        ground.velocityX = 0;
+        trex_sprite.velocityY = 0;
+        obstacles_group.setVelocityXEach(0);
+        cloud_group.setVelocityXEach(0);
+
+        //change the trex animation
+        trex_sprite.changeAnimation("collided", trex_collide);
+
+        //set lifetime of the game objects so that they are never destroyed
+        obstacles_group.setLifetimeEach(-1);
+        cloud_group.setLifetimeEach(-1);
+
+        if (mousePressedOver(restart)) {
+            reset();
+        }
     }
 
     drawSprites();
