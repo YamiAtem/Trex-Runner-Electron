@@ -3,7 +3,7 @@
 
 function spawn_obstacles() {
     if (frameCount % 60 === 0) {
-        var obstacle = createSprite(600, 165, 10, 40);
+        var obstacle = createSprite(856, H / 2 - 2.5, 10, 40);
         //obstacle.debug = true;
         obstacle.velocityX = -(6 + 3 * score / 100);
 
