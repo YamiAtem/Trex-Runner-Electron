@@ -7,6 +7,10 @@ const END = 2;
 
 var game_state = START;
 
+// scores
+var score = 0;
+localStorage["HighestScore"] = 0;
+
 // start screen
 var start_button, title, by;
 
