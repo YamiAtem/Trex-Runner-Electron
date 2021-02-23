@@ -1,7 +1,7 @@
 /// <reference path="../libs/p5.d.ts"/>
 /// <reference path="../libs/p5.global-mode.d.ts"/>
 
-function spawnObstacles() {
+function spawn_obstacles() {
     if (frameCount % 60 === 0) {
         var obstacle = createSprite(600, 165, 10, 40);
         //obstacle.debug = true;
