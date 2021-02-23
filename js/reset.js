@@ -10,7 +10,7 @@ function reset() {
     obstacles_group.destroyEach();
     cloud_group.destroyEach();
 
-    trex_sprite.changeAnimation("running", trex_running);
+    trex_sprite.changeAnimation("running", trex_anim);
 
     if (localStorage["HighestScore"] < score) {
         localStorage["HighestScore"] = score;
